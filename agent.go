@@ -3,7 +3,6 @@ package connman
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/godbus/dbus"
 )
@@ -17,8 +16,8 @@ type Agent struct {
 
 func NewAgent(psk string) *Agent {
 	agent := &Agent{
-		Name:       "com.develboard.webadmin",
-		Path:       "/com/develboard/webadmin/Agent",
+		Name:       "net.connman",
+		Path:       "/test/agent",
 		Interface:  "net.connman.Agent",
 		Passphrase: psk,
 	}
@@ -26,16 +25,6 @@ func NewAgent(psk string) *Agent {
 	conn, err := dbus.SystemBus()
 	if err != nil {
 		fmt.Println(err)
-		return nil
-	}
-
-	reply, err := conn.RequestName(agent.Name, dbus.NameFlagDoNotQueue)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	if reply != dbus.RequestNameReplyPrimaryOwner {
-		fmt.Fprintln(os.Stderr, "Name already taken")
 		return nil
 	}
 
