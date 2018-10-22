@@ -91,6 +91,7 @@ func DBusTechnology(tech dbus.ObjectPath) (*DBusInterface, error) {
 
 func setField(dst interface{}, key string, val dbus.Variant) error {
 	key = strings.Replace(key, ".", "", -1)
+	key = strings.Title(key)
 
 	sv := reflect.ValueOf(dst).Elem()
 	sfv := sv.FieldByName(key)

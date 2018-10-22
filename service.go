@@ -54,6 +54,8 @@ type Service struct {
 	AutoConnect bool
 	Immutable   bool
 	Roaming     bool
+	MDNS   		bool
+	MDNSConfiguration bool
 
 	Ethernet           EthConfig
 	IPv4               IPv4Config
